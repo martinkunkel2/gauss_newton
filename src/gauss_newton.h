@@ -3,10 +3,6 @@
 
 #include "problem.h"
 
-// TODO:
-// Armijo search, Wolfe conditions
-// Levenberg-Marquart regularisation
-
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_matrix.h>
 
