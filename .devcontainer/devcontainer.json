@@ -1,0 +1,19 @@
+{
+	"name": "gauss_newton",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"remoteUser": "vscode",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cmake-tools",
+				"ms-vscode.cpptools-extension-pack"
+			],
+			"settings": {
+				"editor.formatOnSave": true
+			}
+		}
+	}
+}
