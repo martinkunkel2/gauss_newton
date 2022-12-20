@@ -2,11 +2,13 @@ enable_testing()
 include(GoogleTest)
 
 add_executable(gauss_newton_test
-  test.cpp
+  toyproblem.cpp
+  multivariables.cpp
 )
 
 target_link_libraries(gauss_newton_test
   gauss_newton
+  gsl
   gtest
   gtest_main
 )

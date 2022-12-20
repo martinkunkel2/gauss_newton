@@ -4,4 +4,6 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
     cmake \
-    libgtest-dev
+    libgtest-dev \
+    libgsl-dev \
+    gdb
