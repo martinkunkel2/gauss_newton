@@ -56,6 +56,7 @@ bool GaussNewton::Solver::step(double *x, double &stepsize) const
     if (gsl_blas_dgemv(CBLAS_TRANSPOSE_t::CblasTrans, 1.0, J, f, 0.0, JTf))
         return false;
 
+    // TODO: Levenberg-Marquart regularisation
     // calculate J^T * J
     if (gsl_blas_dgemm(CBLAS_TRANSPOSE_t::CblasTrans, CBLAS_TRANSPOSE_t::CblasNoTrans, 1.0, J, J, 0.0, JTJ))
         return false;
@@ -70,6 +71,7 @@ bool GaussNewton::Solver::step(double *x, double &stepsize) const
 
     gsl_vector_view gx = gsl_vector_view_array(x, p.num_variables());
     // x = x - dx
+    // TODO: Armijo search, Wolfe conditions
     if (gsl_vector_axpby(-1.0, dx, 1.0, &gx.vector))
         return false;
 
