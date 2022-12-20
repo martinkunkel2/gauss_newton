@@ -16,7 +16,7 @@ namespace GaussNewton
         bool solve(double *x, const double *x0, size_t maxIterations, double minStepSquare) const;
 
     private:
-        bool step(double *x, double &stepsize) const;
+        bool step(double *x, double &stepobj, double &obj) const;
         const Problem &p;
         gsl_vector *dx;
         gsl_vector *f;
