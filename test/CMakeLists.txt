@@ -7,6 +7,7 @@ add_executable(gauss_newton_test
 
 target_link_libraries(gauss_newton_test
   gauss_newton
+  gtest
   gtest_main
 )
 
