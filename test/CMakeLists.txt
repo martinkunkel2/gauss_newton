@@ -4,6 +4,7 @@ include(GoogleTest)
 add_executable(gauss_newton_test
   toyproblem.cpp
   multivariables.cpp
+  jacobiancalc.cpp
 )
 
 target_link_libraries(gauss_newton_test
