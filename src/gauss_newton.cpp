@@ -33,20 +33,24 @@ bool GaussNewton::Solver::solve(double *x, const double *x0, size_t maxIteration
     // Iteration
     for (size_t iter = 0; iter < maxIterations; iter++)
     {
-        double stepsize = 0.0;
-        bool result = step(x, stepsize);
+        double stepobj = 0.0;
+        double obj = 0.0;
+        bool result = step(x, stepobj, obj);
+
+        printf("step %ld: obj = %lf, square step size objective = %lf, errorflag = %d\n", iter, obj, stepobj, !result);
+
         // some error occured
         if (!result)
             return false;
         // no further progress
-        if (stepsize < minStepSquare)
+        if (stepobj < minStepSquare)
             return true;
     }
 
     return false;
 }
 
-bool GaussNewton::Solver::step(double *x, double &stepsize) const
+bool GaussNewton::Solver::step(double *x, double &stepobj, double &obj) const
 {
     // eval function and jacobian
     p.eval(f->data, x);
@@ -75,8 +79,13 @@ bool GaussNewton::Solver::step(double *x, double &stepsize) const
     if (gsl_vector_axpby(-1.0, dx, 1.0, &gx.vector))
         return false;
 
-    if (gsl_blas_ddot(&gx.vector, &gx.vector, &stepsize))
+    double obj_start;
+    if (gsl_blas_ddot(f, f, &obj_start))
         return false;
+    p.eval(f->data, x);
+    if (gsl_blas_ddot(f, f, &obj))
+        return false;
+    stepobj = 0.5 * (obj_start - obj);
 
     return true;
 }

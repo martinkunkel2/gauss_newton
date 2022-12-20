@@ -16,7 +16,7 @@ namespace GaussNewton
         size_t num_variables() const { return m_num_variables; }
         size_t num_equations() const { return m_num_equations; }
         virtual void eval(double *f, const double *x) const = 0;
-        virtual void jacobian(double *J, const double *x) const = 0;
+        virtual void jacobian(double *J, const double *x) const;
 
     private:
         const size_t m_num_variables;
